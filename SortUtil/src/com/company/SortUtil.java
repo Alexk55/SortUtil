@@ -66,7 +66,7 @@ public class SortUtil
     }
     /*
     * 快速排序分治函数*/
-    public static int partation(List listA,int low,int high)
+    private static int partation(List listA,int low,int high)
     {
         int pivotkey=(int)listA.get(low);
         int element;
@@ -152,5 +152,45 @@ public class SortUtil
         }
         return listA;
     }
+    /*
+    * 归并排序*/
+    public static List mergingSort(List listA,int low,int high)
+    {
+        if((high-low)>1)
+        {
+            int offset=(low+high)/2;
+            mergingSort(listA,low,offset);
+            mergingSort(listA,offset,high);
 
+        }
+        return listA;
+    }
+    private static List merge(List listA,int low,int offset,int high)
+    {
+        List listB=new ArrayList();
+        List listC=new ArrayList();
+        int i,j,k;
+        listB=listA.subList(low,offset);
+        listC=listA.subList(offset,high);
+        for(i=low,j=0,k=0;i<high;i++)
+        {
+            if(j==listB.size()) {
+                listA.addAll(i - low, listC.subList(k, listC.size()));
+                break;
+            }
+            if(k==listC.size()) {
+                listA.addAll(i - low, listB.subList(j, listB.size()));
+                break;
+            }
+            if(((int)listB.get(j)<(int)listC.get(k)))
+            {
+                listA.set(i++,listB.get(j++));
+            }
+            else
+            {
+                listA.set(i++,listC.get(k++));
+            }
+        }
+        return listA;
+    }
 }
