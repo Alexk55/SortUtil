@@ -26,7 +26,7 @@ public class Main {
             listA=SortUtil.shellSort(listA);
             System.out.println(listA);*/
             System.out.println("归并排序：");
-            listA=SortUtil.mergingSort(listA,0,listA.size());
+            listA=SortUtil.mergeSort(listA,0,listA.size()-1);
             System.out.println(listA);
         }
         catch(Exception e)

@@ -135,37 +135,43 @@ public class SortUtil {
 
     /*
     * 归并排序*/
-    public static List mergingSort(List listA, int low, int high) {
-        if ((high - low) > 1) {
-            int offset = (low + high) / 2;
-            mergingSort(listA, low, offset);
-            mergingSort(listA, offset, high);
-            merge(listA, low, offset, high);
-        }
-        return listA;
-    }
 
-    private static List merge(List listA, int low, int offset, int high) {
-        List listB = new ArrayList();
-        List listC = new ArrayList();
-        int i, j, k;
-        listB = listA.subList(low, offset);
-        listC = listA.subList(offset, high);
-        for (i = low, j = 0, k = 0; i < high; i++) {
-            if (j == listB.size()) {
-                listA.addAll(i - low, listC.subList(k, listC.size()));
-                break;
-            }
-            if (k == listC.size()) {
-                listA.addAll(i - low, listB.subList(j, listB.size()));
-                break;
-            }
-            if (((int) listB.get(j) < (int) listC.get(k))) {
-                listA.set(i++, listB.get(j++));
-            } else {
-                listA.set(i++, listC.get(k++));
-            }
+    public static List mergeSort(List list,int low,int high)
+    {
+        if(list==null)
+            return null;
+        int mid=(low+high)/2;
+        if(low<high)
+        {
+            mergeSort(list,low,mid);
+            mergeSort(list,mid+1,high);
+            merge(list,low,mid,high);
         }
-        return listA;
+        return list;
+    }
+    public static void merge(List list,int low,int mid,int high)
+    {
+        List temp=new ArrayList();
+        int i=low;
+        int j=mid+1;
+        int k=0;
+        if(k<(high-low+1))
+        {
+            while(i<=mid&&j<=high)
+            {
+                if((int)list.get(i)<(int)list.get(j))
+                    temp.add(list.get(i++));
+                else
+                    temp.add(list.get(j++));
+                k++;
+            }
+            while(i<=mid)
+                temp.add(list.get(i++));
+            while(j<=mid)
+                temp.add(list.get(j++));
+        }
+        i=low;
+        for(k=0;k<temp.size();k++)
+            list.set(i++,temp.get(k));
     }
 }
