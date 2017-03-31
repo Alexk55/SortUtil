@@ -1,5 +1,6 @@
 package com.company;
 
+import java.text.CollationElementIterator;
 import java.util.*;
 
 /**
@@ -136,42 +137,72 @@ public class SortUtil {
     /*
     * 归并排序*/
 
-    public static List mergeSort(List list,int low,int high)
-    {
-        if(list==null)
+    public static List mergeSort(List list, int low, int high) {
+        if (list == null)
             return null;
-        int mid=(low+high)/2;
-        if(low<high)
-        {
-            mergeSort(list,low,mid);
-            mergeSort(list,mid+1,high);
-            merge(list,low,mid,high);
+        int mid = (low + high) / 2;
+        if (low < high) {
+            mergeSort(list, low, mid);
+            mergeSort(list, mid + 1, high);
+            merge(list, low, mid, high);
         }
         return list;
     }
-    public static void merge(List list,int low,int mid,int high)
-    {
-        List temp=new ArrayList();
-        int i=low;
-        int j=mid+1;
-        int k=0;
-        if(k<(high-low+1))
-        {
-            while(i<=mid&&j<=high)
-            {
-                if((int)list.get(i)<(int)list.get(j))
+
+    public static void merge(List list, int low, int mid, int high) {
+        List temp = new ArrayList();
+        int i = low;
+        int j = mid + 1;
+        int k = 0;
+        if (k < (high - low + 1)) {
+            while (i <= mid && j <= high) {
+                if ((int) list.get(i) < (int) list.get(j))
                     temp.add(list.get(i++));
                 else
                     temp.add(list.get(j++));
                 k++;
             }
-            while(i<=mid)
+            while (i <= mid)
                 temp.add(list.get(i++));
-            while(j<=mid)
+            while (j <= mid)
                 temp.add(list.get(j++));
         }
-        i=low;
-        for(k=0;k<temp.size();k++)
-            list.set(i++,temp.get(k));
+        i = low;
+        for (k = 0; k < temp.size(); k++)
+            list.set(i++, temp.get(k));
+    }
+
+    /*
+    * 堆排序*/
+    public static List heapSort(List list) {
+        int i;
+        for (i = list.size(); i > 1; i--) {
+            buildHeapSort(list.subList(0, i));
+            Collections.swap(list, 0, i - 1);
+        }
+        return list;
+    }
+    public static void buildHeapSort(List list)/*构建大顶堆*/ {
+        int i;
+        for (i = (list.size() - 2) / 2; i >= 0; i--) {
+            maxify(list, i);
+        }
+    }
+    private static void maxify(List list, int i) /*堆调整*/
+    {
+        int parent = (int) list.get(i);
+        int lChild = (int) list.get(2 * i + 1);
+        if(2*i+2!=list.size()){
+            int rChild = (int) list.get(2 * i + 2);
+            if (lChild > rChild)
+                Collections.swap(list, 2 * i + 1, 2 * i + 2);
+            if ((int) list.get(2 * i + 2) > parent)
+                Collections.swap(list, 2 * i + 2, i);
+        }
+        else
+        {
+            if(lChild > parent)
+                Collections.swap(list,2*i+1,i);
+        }
     }
 }
