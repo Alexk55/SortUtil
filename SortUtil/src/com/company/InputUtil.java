@@ -16,7 +16,7 @@ public class InputUtil{
     {
         List listA=new ArrayList();
         System.out.println("文件中读取数组为：");
-        FileInputStream file= new FileInputStream("C:/Users/lidongyu.DIDICHUXING/Desktop/alex.txt");
+        FileInputStream file= new FileInputStream("");
         BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(file,"UTF-8"));
         String line="";
         if(line!=null)
