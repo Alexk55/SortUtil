@@ -24,8 +24,13 @@ public class ExeSecond {
                     arrIntN = num(arrIntN);
                     k--;
                 }
-                for (i = 0; i < n; i++)
-                    System.out.print(arrIntN[i] + " ");
+                for (i = 0; i < n; i++) {
+                    if(i!=n-1) {
+                        System.out.print(arrIntN[i] + " ");
+                    }
+                    else
+                        System.out.print(arrIntN[i]);
+                }
             } else {
                 System.out.println("imput error");
             }
