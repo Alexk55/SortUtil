@@ -1,11 +1,6 @@
-import sun.misc.Sort;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.lang.*;
-import java.util.*;
+import java.util.Scanner;
 
 /**
  * Created by lidongyu on 2017/3/28.
