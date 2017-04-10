@@ -4,35 +4,34 @@ import java.util.Scanner;
  * Created by Alexk on 17/4/8.
  */
 public class ExeTen {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         String imput = in.nextLine();
         try {
             String[] arrStr = imput.split(" ");
-            long nWork=0,qHour=1;
-            if(arrStr.length==2)
-            {
-                nWork=Integer.parseInt(arrStr[0]);
-                qHour=Integer.parseInt(arrStr[1]);
+            long nWork=0,qHour=0;
+            if (arrStr.length == 2) {
+                nWork = Long.parseLong(arrStr[0]);//输入字符串长度问题
+                qHour = Long.parseLong(arrStr[1]);
             }
-            double division = Math.log((double)(nWork/qHour))/Math.log(2);
-            long k=(long)Math.floor(division);
-            long time=0,minTime=nWork;
-            for(int i=1;i<=k;i++)
+            double division = Math.log(nWork)/Math.log(2);
+            long k = (long) Math.floor(division);
+            if(Math.pow(2,k)<nWork)
             {
-                long robotCount=(long)Math.pow(2,i);
-                if(nWork%robotCount==0)
-                    time = (i * qHour) + (nWork / robotCount);
+                k++;
+            }
+            long time = 0, minTime = nWork;
+            for (int i = 0; i <= k; i++) {
+                long robotNum = (long) Math.pow(2, i);
+                if (nWork % robotNum == 0)
+                    time = (i * qHour) + (nWork / robotNum);
                 else
-                    time = (i*qHour)+(nWork/robotCount)+1;
-                if(minTime>time)
-                    minTime=time;
+                    time = (i * qHour) + (nWork / robotNum) + 1;
+                if (minTime > time)
+                    minTime = time;
             }
-            System.out.println(minTime);
-        }
-        catch (Exception ex)
-        {
+            System.out.print(minTime);
+        } catch (Exception ex) {
             System.out.println("imput error");
         }
 
