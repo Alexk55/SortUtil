@@ -1,7 +1,8 @@
 package com.company;
 
-import java.text.CollationElementIterator;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by lidongyu on 2016/12/29.
@@ -154,19 +155,16 @@ public class SortUtil {
         int i = low;
         int j = mid + 1;
         int k = 0;
-        if (k < (high - low + 1)) {
-            while (i <= mid && j <= high) {
-                if ((int) list.get(i) < (int) list.get(j))
-                    temp.add(list.get(i++));
-                else
-                    temp.add(list.get(j++));
-                k++;
-            }
-            while (i <= mid)
+        while (i <= mid && j <= high) {
+            if ((int) list.get(i) < (int) list.get(j))
                 temp.add(list.get(i++));
-            while (j <= mid)
+            else
                 temp.add(list.get(j++));
         }
+        while (i <= mid)
+            temp.add(list.get(i++));
+        while (j <= mid)
+            temp.add(list.get(j++));
         i = low;
         for (k = 0; k < temp.size(); k++)
             list.set(i++, temp.get(k));
@@ -182,27 +180,26 @@ public class SortUtil {
         }
         return list;
     }
+
     public static void buildHeapSort(List list)/*构建大顶堆*/ {
         int i;
         for (i = (list.size() - 2) / 2; i >= 0; i--) {
             maxify(list, i);
         }
     }
-    private static void maxify(List list, int i) /*堆调整*/
-    {
+
+    private static void maxify(List list, int i) /*堆调整*/ {
         int parent = (int) list.get(i);
         int lChild = (int) list.get(2 * i + 1);
-        if(2*i+2!=list.size()){
+        if (2 * i + 2 != list.size()) {
             int rChild = (int) list.get(2 * i + 2);
             if (lChild > rChild)
                 Collections.swap(list, 2 * i + 1, 2 * i + 2);
             if ((int) list.get(2 * i + 2) > parent)
                 Collections.swap(list, 2 * i + 2, i);
-        }
-        else
-        {
-            if(lChild > parent)
-                Collections.swap(list,2*i+1,i);
+        } else {
+            if (lChild > parent)
+                Collections.swap(list, 2 * i + 1, i);
         }
     }
 }

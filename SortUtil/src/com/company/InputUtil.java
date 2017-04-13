@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Created by lidongyu on 2016/12/29.
@@ -16,7 +15,7 @@ public class InputUtil{
     {
         List listA=new ArrayList();
         System.out.println("文件中读取数组为：");
-        FileInputStream file= new FileInputStream("");
+        FileInputStream file= new FileInputStream("/Users/Alexk/Desktop/programingTest/test1.txt");
         BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(file,"UTF-8"));
         String line="";
         if(line!=null)

@@ -24,12 +24,12 @@ public class Main {
 /*            System.out.println("The ShellSort result is:");
             listA=SortUtil.shellSort(listA);
             System.out.println(listA);*/
-            /*System.out.println("归并排序：");
+            System.out.println("归并排序：");
             listA=SortUtil.mergeSort(listA,0,listA.size()-1);
-            System.out.println(listA);*/
-            System.out.println("堆排序：");
-            listA=SortUtil.heapSort(listA);
             System.out.println(listA);
+            /*System.out.println("堆排序：");
+            listA = SortUtil.heapSort(listA);
+            System.out.println(listA);*/
         }
         catch(Exception e)
         {
