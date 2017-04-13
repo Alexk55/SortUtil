@@ -61,16 +61,13 @@ public class SortUtil {
     * 快速排序分治函数*/
     private static int partation(List listA, int low, int high) {
         int pivotkey = (int) listA.get(low);
-        int element;
         while (low < high) {
             while (low < high && (int) listA.get(high) > pivotkey)
                 high--;
-            element = (int) listA.get(high);
-            listA.set(low, element);
+            Collections.swap(listA,high,low);
             while (low < high && (int) listA.get(low) < pivotkey)
                 low++;
-            element = (int) listA.get(low);
-            listA.set(high, element);
+            Collections.swap(listA,low,high);
         }
         listA.set(high, pivotkey);
         return high;
